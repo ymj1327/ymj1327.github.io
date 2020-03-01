@@ -1,4 +1,10 @@
-var themeLocalSearch = function({search_path, zip_Path, version_Path, input_Trigger, top_N}) {
+/**
+ * Created & edited by SuperKieran (https://github.com/SuperKieran/TKL/blob/master/layout/_partial/search.ejs.
+ * 
+ * Modified slightly by Sariay (https://github.com/Sariay/hexo-theme-Annie).
+ */
+
+const themeLocalSearch = function({search_path, zip_Path, version_Path, input_Trigger, top_N}) {
     // Popup Window;
     var isfetched = false,
         isXml = true;
@@ -12,21 +18,30 @@ var themeLocalSearch = function({search_path, zip_Path, version_Path, input_Trig
 
     // monitor main search box;
     var onPopupClose = function(e) {
-        $('.popup').fadeOut(300);
-        $('body').removeClass('body-fixed')
+        $('.popup').addClass('scale-out-horizontal').fadeOut(600);
+		$('body').removeClass('body-fixed-search')
         $('#local-search-input').val('');
         $('.search-result-list').remove();
         $('#no-result').remove();
         $('.search-result-number').remove();
-    }
+		
+		setTimeout(function(){
+			$('.popup').removeClass('scale-out-horizontal');
+		}, 1000);
+	}
 
     function proceedsearch() {
-        $('.popup').fadeIn(300);
-        $('body').addClass('body-fixed');
+        $('.popup').addClass('scale-in-hor-center').fadeIn(600);
+        
         var $localSearchInput = $('#local-search-input');
         $localSearchInput.attr("autocapitalize", "none");
         $localSearchInput.attr("autocorrect", "off");
         $localSearchInput.focus();
+		
+		setTimeout(function(){
+			$('.popup').removeClass('scale-in-hor-center');		
+			$('body').addClass('body-fixed-search');
+		}, 1000);
     }
 
     // get search zip version and initialize  the search zip;
@@ -264,9 +279,7 @@ var themeLocalSearch = function({search_path, zip_Path, version_Path, input_Trig
                         }
 
                         slicesOfContent.forEach(function(slice) {
-                            resultItem += "<a target='_blank' href='" + articleUrl + "'>" +
-                                "<p class=\"search-result-content\">" + highlightKeyword(content, slice) +
-                                "...</p>" + "</a>";
+                            resultItem += "<p class=\"search-result-content\">" + highlightKeyword(content, slice) + "...</p>";
                         });
 
                         resultItem += "</li>";
@@ -280,9 +293,9 @@ var themeLocalSearch = function({search_path, zip_Path, version_Path, input_Trig
                 })
             };
             if (keywords.length === 1 && keywords[0] === "") {
-                resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-2x" /></div>'
+                resultContent.innerHTML = '<div id="no-result"><i class="" />Please type in some words!</div>'
             } else if (resultItems.length === 0) {
-                resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-3x" /></div>'
+                resultContent.innerHTML = '<div id="no-result"><i class="" />No any results!</div>'
             } else {
                 resultItems.sort(function(resultLeft, resultRight) {
                     if (resultLeft.searchTextCount !== resultRight.searchTextCount) {

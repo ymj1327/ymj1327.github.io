@@ -1,7 +1,7 @@
 <!--
 	作者：Sariay
-	时间：2018-09-25
-	描述：There may be a bug, but don't worry, QiLing(器灵) says that it can work normally!
+	时间：2018-08-26
+	描述：There may be a bug, but don't worry, Qiling(器灵) says that it can work normally! aha!
 -->
 <!DOCTYPE html>
 <html class="html-loading">
@@ -23,15 +23,28 @@
   <link rel="shortcut icon" href="/img/favicon.ico">
 
   <!-- css -->
-  <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="/css/Annie.css">
+  <link rel="stylesheet" href="/css/Annie.css">
   
   <!-- jquery -->
-	<script src="/js/jquery.min.js"></script>
+	<script src="/plugin/jquery/jquery.min.js"></script>
 
-  <!-- leancloud -->
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
-<script src="/js/leancloud.js"></script>
+<script>
+    const CONFIG_BGIMAGE = {
+      mode: 'normal',
+      normalSrc: '/img/header-bg.jpg',
+      randomYouMax: 110,
+      randomYouSrc: 'https://sariay.github.io/Random-img/',
+	  randomOtherSrc: 'https://api.berryapi.net/?service=App.Bing.Images&day=-0',
+	  preloaderEnable: true
+    }
+	
+    const CONFIG_LEACLOUD_COUNT = {
+      enable: false,
+	  appId: 'AU8...',
+	  appKey: '4cU...',
+	  serverURLs: 'http' || ' '
+    }
+  </script>
 </head>
 	<body>
 		<!-- Preloader -->
@@ -49,105 +62,24 @@
 
 
 <!-- header -->
-<header class="fixbackground" data-img-mode="normal" data-normal-src="/img/1.jpg" data-random-max="110" data-random-src="https://sariay.github.io/Random-img/">
+<header class="fixbackground bg-pan-br">
 	<div class="mask">
-		<!-- Logo and navigation -->
-		<div class="h-header">
-			<div id="logo">
-				<a href="/">
-						
-						<img src="/img/logo2.png" alt="Logo">
-					
-				</a>
-			</div>
-			
-			<div id="navigation-show">
-				<ul>
-	
-		<li class="menu-home">
-			<a href="/" class="menu-item-home">主页</a>
-		</li>
-	
-		<li class="menu-archive">
-			<a href="/archives" class="menu-item-archive">归档</a>
-		</li>
-	
-		<li class="menu-categories">
-			<a href="/categories" class="menu-item-categories">分类</a>
-		</li>
-	
-		<li class="menu-tags">
-			<a href="/tags" class="menu-item-tags">标签</a>
-		</li>
-	
-		<li class="menu-about">
-			<a href="/about" class="menu-item-about">关于</a>
-		</li>
-	
-		<li class="menu-gallery">
-			<a href="/gallery" class="menu-item-gallery">相册</a>
-		</li>
-	
-
-	
-		<li class="menu-search">
-			<a href="javascript:;" class="popup-trigger">搜索</a>
-		</li>
-	
-</ul>
-			</div>				
-		</div>
-
 		<!-- motto -->
 		<div class="h-body">	
 			
-				<p class="motto"></p>
+				<div class="motto text-shadow-pop-left">
+					<p class="content" id="motto-content">获取中...</p>
+					<p>-<p>
+					<p class="author" id="motto-author">Just a minute...</p>
+				</div>
 			
 		</div>
 		
 		<!-- others: such as time... -->			
 		<div class="h-footer">
-			<a href="javascript:;" id="read-more"><i class="fa fa-angle-double-down" aria-hidden="true"></i>
+			<a href="javascript:;" id="read-more" class="scroll-down">
+				<span class="icon-anchor1 animation-scroll-down"></span>
 			</a>
-
-			
-				<!-- 
-	This is only a demo, please go to "https://time.is" to set your city time! 
--->
-<style type="text/css">
-	.header-date {
-		font-size: 1.6rem;
-		color: #fff;
-		position: absolute;
-		bottom: 5px;
-		right: 1rem;
-		writing-mode: tb-rl;
-	}	
-	
-	.header-date a {
-		border-bottom: none;
-	}
-
-	@media only screen and (max-width: 768 ) {
-		.header-date {
-			font-size: 1rem;
-		}			
-	}
-</style>
-<div class="header-date">
-	<a href="https://time.is/Beijing" id="time_is_link" rel="nofollow" ></a>
-	<span id="Beijing_z43d"></span>
-</div>
-<script src="//widget.time.is/zh.js"></script>
-<script>
-	time_is_widget.init({
-		Beijing_z43d:{
-			template:"DATE", 
-			date_format:"year年 monthname dnum日"
-		}
-	});
-</script>
-			
 		</div>
 	</div>
 </header>
@@ -157,16 +89,19 @@
 	<div id="progress-bar"></div>
 
 	<!-- Progress percent -->
-	<div id="progress-percentage"><h1>0.0%</h1></div>
+	<div id="progress-percentage"><span>0.0%</span></div>
 
 	<div class="toc-switch"><span class="switch-button">目录</span></div>
 
 	<!-- Page title -->
 	<p>
 		
-			当前文章&nbsp;:&nbsp;《长沙Changsha》
+			「长沙Changsha」
 		
 	</p>
+
+	
+	
 
 	<!-- Nav trigger for navigation-H-->
 	<a class="nav-trigger"><span></span></a>
@@ -175,35 +110,44 @@
 <!-- Navigation in div(id="navigation-H") -->
 <nav class="nav-container" id="cd-nav">
 	<div class="nav-header">
-		<h3>Navigation</h3>
+		<span class="logo"> 
+			<img src="/img/logo2.png">
+		</span>
 		<a href="javascript:;" class="nav-close"></a>
 	</div>
+	
 	<div class="nav-body">
-		<ul>
+		<ul id="global-nav">
 	
 		<li class="menu-home">
-			<a href="/" class="menu-item-home">主页</a>
+			<a href="/" class="menu-item-home" target="_blank">主页</a>
 		</li>
+		
 	
 		<li class="menu-archive">
-			<a href="/archives" class="menu-item-archive">归档</a>
+			<a href="/archives" class="menu-item-archive" target="_blank">归档</a>
 		</li>
+		
 	
 		<li class="menu-categories">
-			<a href="/categories" class="menu-item-categories">分类</a>
+			<a href="/categories" class="menu-item-categories" target="_blank">分类</a>
 		</li>
+		
 	
 		<li class="menu-tags">
-			<a href="/tags" class="menu-item-tags">标签</a>
+			<a href="/tags" class="menu-item-tags" target="_blank">标签</a>
 		</li>
+		
 	
 		<li class="menu-about">
-			<a href="/about" class="menu-item-about">关于</a>
+			<a href="/about" class="menu-item-about" target="_blank">关于</a>
 		</li>
+		
 	
 		<li class="menu-gallery">
-			<a href="/gallery" class="menu-item-gallery">相册</a>
+			<a href="/gallery" class="menu-item-gallery" target="_blank">相册</a>
 		</li>
+		
 	
 
 	
@@ -213,42 +157,55 @@
 	
 </ul>
 	</div>
+	
 	<div class="nav-footer">
-		<ul>
+		<ul id="global-social">
 	
 		<li>
 			<a href="http://github.com/" target="_blank">
-				<i class="fa fa-github"></i>
+				<span class="icon-one"><span class="path1"></span><span class="path2"></span></span>
 			</a>
 		</li>
 	
 		<li>
 			<a href="http://github.com/" target="_blank">
-				<i class="fa fa-weibo"></i>
+				<span class="icon-zhihu"></span>
 			</a>
 		</li>
 	
 		<li>
 			<a href="http://github.com/" target="_blank">
-				<i class="fa fa-pinterest"></i>
+				<span class="icon-github"></span>
 			</a>
 		</li>
 	
 		<li>
 			<a href="http://github.com/" target="_blank">
-				<i class="fa fa-instagram"></i>
+				<span class="icon-sina-weibo "></span>
 			</a>
 		</li>
 	
 		<li>
 			<a href="http://github.com/" target="_blank">
-				<i class="fa fa-twitter"></i>
+				<span class="icon-pinterest2"></span>
+			</a>
+		</li>
+	
+		<li>
+			<a href="http://github.com/" target="_blank">
+				<span class="icon-instagram"></span>
+			</a>
+		</li>
+	
+		<li>
+			<a href="http://github.com/" target="_blank">
+				<span class="icon-twitter"></span>
 			</a>
 		</li>
 	
 		<li>
 			<a href="/atom.xml" target="_blank">
-				<i class="fa fa-rss"></i>
+				<span class="icon-rss"></span>
 			</a>
 		</li>
 			
@@ -274,7 +231,6 @@
 			</div>
 		</div>
 
-		
 		<script src="/plugin/toc/katelog.min.js"></script>
 
 		
@@ -282,35 +238,19 @@
 
 <div class="layout-post">
 	<div id="layout-post">
-	<div class="article-title">
-		<i class="fa fa-paper-plane-o" aria-hidden="true"></i>
-		
+		<div class="article-title">
+			
 	<a href="/2019/12/23/长沙Changsha/" itemprop="url">
 		长沙Changsha
 	</a>
 
-	</div>
+		</div>
 
-	<div class="article-meta">
-		<span>
-			<i class="fa fa-calendar"></i>
-			
-
-
-	发布于
-
-	<a href="/2019/12/23/长沙Changsha/" itemprop="url">
-		<time datetime="2019-12-23T08:40:08.000Z" itemprop="datePublished">
-	  		2019-12-23
-	  </time>
-	</a>
-	&nbsp;
-
-
-
-
-
-			
+		<div class="article-meta">
+			<span>
+				<i class="icon-calendar1"></i>
+				
+				
 
 
 
@@ -325,10 +265,10 @@
 
 
 
-		</span>
-		<span>
-			<i class="fa fa-tags"></i>
-			
+			</span>
+			<span>
+				
+	<i class="icon-price-tags"></i>
 	
 		<a href="/tags/2017/" class=" ">
 			2017
@@ -351,16 +291,16 @@
 		</a>
 	
 		
-		</span>
-		
-		
+			</span>
+			
+			
 
 
 
-	</div>
+		</div>
 
-	<div class="article-content" id="article-content">
-		<h2 id="长沙旅行日记"><a href="#长沙旅行日记" class="headerlink" title="长沙旅行日记"></a>长沙旅行日记</h2><h3 id="NO-1-2016-09-30-10-06"><a href="#NO-1-2016-09-30-10-06" class="headerlink" title="NO.1 2016 09.30-10.06"></a>NO.1 2016 09.30-10.06</h3><p>这年国庆节我们走了四万步。</p>
+		<div class="article-content" id="article-content">
+			<h2 id="长沙旅行日记"><a href="#长沙旅行日记" class="headerlink" title="长沙旅行日记"></a>长沙旅行日记</h2><h3 id="NO-1-2016-09-30-10-06"><a href="#NO-1-2016-09-30-10-06" class="headerlink" title="NO.1 2016 09.30-10.06"></a>NO.1 2016 09.30-10.06</h3><p>这年国庆节我们走了四万步。</p>
 <h3 id="NO-2-2016-10-21-10-23"><a href="#NO-2-2016-10-21-10-23" class="headerlink" title="NO.2 2016 10.21-10.23"></a>NO.2 2016 10.21-10.23</h3><p>来中南大学参加运动会。</p>
 <h3 id="NO-3-2016-11-25-11-27"><a href="#NO-3-2016-11-25-11-27" class="headerlink" title="NO.3 2016 11.25-11.27"></a>NO.3 2016 11.25-11.27</h3><p>上军理课、参加期中考试、自习，神奇动物在哪里。</p>
 <h3 id="NO-4-2017-03-03-03-05"><a href="#NO-4-2017-03-03-03-05" class="headerlink" title="NO.4 2017 03.03-03.05"></a>NO.4 2017 03.03-03.05</h3><p>烈士公园唠叨，淋雨，吃麻辣烫吃撑。</p>
@@ -370,22 +310,22 @@
 <h3 id="NO-8-2019-09-24-09-27"><a href="#NO-8-2019-09-24-09-27" class="headerlink" title="NO.8 2019 09.24-09.27"></a>NO.8 2019 09.24-09.27</h3><p>征服半个岳麓山，费大厨没有炊烟时代好吃。</p>
 <h3 id="NO-9-2019-12-20-12-23"><a href="#NO-9-2019-12-20-12-23" class="headerlink" title="NO.9 2019 12.20-12.23"></a>NO.9 2019 12.20-12.23</h3><p>考研必胜，逢考必过。</p>
 <h3 id="NO-10"><a href="#NO-10" class="headerlink" title="NO.10"></a>NO.10</h3>	
-	</div>
-	
-	<div id="current-post-cover" data-scr="/img/mycover/cover_changsha.jpg"></div>
+		</div>
+		
+		<div id="current-post-cover" data-scr="/img/mycover/cover_changsha.jpg"></div>
 
-	<!-- relate post, comment...-->
-	<div class="investment-container">
-		<div class="investment-header">
-			<div class="investment-title-1">
-				<div class="on">相关文章</div>
-				<div>评论</div>
-				<div>分享</div>
-			</div>
-			<div class="investment-title-2">	            
-				
+		<!-- relate post, comment...-->
+		<div class="investment-container">
+			<div class="investment-header">
+				<div class="investment-title-1">
+					<div class="on">相关文章</div>
+					<div>评论</div>
+					<div>分享</div>
+				</div>
+				<div class="investment-title-2">	            
+					
 	<span>
-		<a href="javascript: window.scrollTo(0, 0);">返回顶部</a>
+		<a id="totop-post-page">返回顶部</a>
 		
 			<a href="/2019/12/25/hello-world/" title="iMYMJ Log" rel="prev">
 				&laquo;上一篇
@@ -400,12 +340,12 @@
 
 
       		
-			</div>	
-		</div>
-		
-		<div class="investment-content">
-			<div class="investment-content-list">
-				
+				</div>	
+			</div>
+			
+			<div class="investment-content">
+				<div class="investment-content-list">
+					
 
 <div class="relate-post">
 	
@@ -428,11 +368,10 @@
 						<div class="relate-post-cover">
 							<a href="/2020/02/28/待定/" title="待定">				
 								
-								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/mycover/cover_map.jpeg" alt="待定"/>
+								<img class="lazy" src="/img/lazy.gif" data-src="/img/mycover/cover_map.jpeg" alt="待定"/>
 							</a>
 						</div>
-					</li>											
-			
+					</li>												
 			
 					<li>
 						<div class="relate-post-text">
@@ -451,11 +390,10 @@
 						<div class="relate-post-cover">
 							<a href="/2019/10/20/重庆Chongqing/" title="重庆Chongqing">				
 								
-								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/mycover/cover_chongqing.jpg" alt="重庆Chongqing"/>
+								<img class="lazy" src="/img/lazy.gif" data-src="/img/mycover/cover_chongqing.jpg" alt="重庆Chongqing"/>
 							</a>
 						</div>
-					</li>											
-			
+					</li>												
 			
 					<li>
 						<div class="relate-post-text">
@@ -476,11 +414,10 @@ NO.3 2018 06.16-06.19至此开始养老游，逛迪卡侬，侏罗...
 						<div class="relate-post-cover">
 							<a href="/2019/08/18/南京Nanjing/" title="南京Nanjing">				
 								
-								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/mycover/cover_nanjing.jpg" alt="南京Nanjing"/>
+								<img class="lazy" src="/img/lazy.gif" data-src="/img/mycover/cover_nanjing.jpg" alt="南京Nanjing"/>
 							</a>
 						</div>
-					</li>											
-			
+					</li>												
 			
 					<li>
 						<div class="relate-post-text">
@@ -502,11 +439,10 @@ NO.3 2018 06.16-06.19至此开始养老游，逛迪卡侬，侏罗...
 						<div class="relate-post-cover">
 							<a href="/2019/04/07/庐山南昌/" title="庐山南昌">				
 								
-								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/mycover/cover_lushan.jpg" alt="庐山南昌"/>
+								<img class="lazy" src="/img/lazy.gif" data-src="/img/mycover/cover_lushan.jpg" alt="庐山南昌"/>
 							</a>
 						</div>
-					</li>											
-			
+					</li>												
 			
 					<li>
 						<div class="relate-post-text">
@@ -527,11 +463,10 @@ NO.3 2018 06.16-06.19至此开始养老游，逛迪卡侬，侏罗...
 						<div class="relate-post-cover">
 							<a href="/2018/10/04/洛阳西安/" title="洛阳西安">				
 								
-								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/mycover/cover_luoyang.jpg" alt="洛阳西安"/>
+								<img class="lazy" src="/img/lazy.gif" data-src="/img/mycover/cover_luoyang.jpg" alt="洛阳西安"/>
 							</a>
 						</div>
-					</li>											
-			
+					</li>												
 			
 					<li>
 						<div class="relate-post-text">
@@ -553,11 +488,10 @@ NO.2 2018 05.18-05.20别人家的学校，去无印风酒店做过站。
 						<div class="relate-post-cover">
 							<a href="/2018/05/20/武汉Wuhan/" title="武汉Wuhan">				
 								
-								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/mycover/cover_wuhan.jpg" alt="武汉Wuhan"/>
+								<img class="lazy" src="/img/lazy.gif" data-src="/img/mycover/cover_wuhan.jpg" alt="武汉Wuhan"/>
 							</a>
 						</div>
-					</li>											
-			
+					</li>												
 			
 					<li>
 						<div class="relate-post-text">
@@ -578,11 +512,10 @@ NO.2 2018 05.18-05.20别人家的学校，去无印风酒店做过站。
 						<div class="relate-post-cover">
 							<a href="/2018/04/07/无锡苏州/" title="无锡苏州">				
 								
-								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/mycover/cover_wuxi.jpg" alt="无锡苏州"/>
+								<img class="lazy" src="/img/lazy.gif" data-src="/img/mycover/cover_wuxi.jpg" alt="无锡苏州"/>
 							</a>
 						</div>
-					</li>											
-			
+					</li>												
 			
 					<li>
 						<div class="relate-post-text">
@@ -602,11 +535,10 @@ NO.2 2018 05.18-05.20别人家的学校，去无印风酒店做过站。
 						<div class="relate-post-cover">
 							<a href="/2017/10/04/厦门Xiamen/" title="厦门Xiamen">				
 								
-								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/mycover/cover_xiamen.jpg" alt="厦门Xiamen"/>
+								<img class="lazy" src="/img/lazy.gif" data-src="/img/mycover/cover_xiamen.jpg" alt="厦门Xiamen"/>
 							</a>
 						</div>
-					</li>											
-			
+					</li>												
 			
 					<li>
 						<div class="relate-post-text">
@@ -627,11 +559,10 @@ NO.2 2018 05.18-05.20别人家的学校，去无印风酒店做过站。
 						<div class="relate-post-cover">
 							<a href="/2017/05/30/杭州Hangzhou/" title="杭州Hangzhou">				
 								
-								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/mycover/cover_hangzhou.jpg" alt="杭州Hangzhou"/>
+								<img class="lazy" src="/img/lazy.gif" data-src="/img/mycover/cover_hangzhou.jpg" alt="杭州Hangzhou"/>
 							</a>
 						</div>
-					</li>											
-			
+					</li>												
 			
 					<li>
 						<div class="relate-post-text">
@@ -654,18 +585,17 @@ Time Machine2020.02.28 : 重新部署coding页面，添加未来计划页面。
 						<div class="relate-post-cover">
 							<a href="/2019/12/25/hello-world/" title="iMYMJ Log">				
 								
-								<img class="lazy" src="/img/placeholder.jpg" data-src="/img/cart_cover.jpg" alt="iMYMJ Log"/>
+								<img class="lazy" src="/img/lazy.gif" data-src="/img/cart_cover.jpg" alt="iMYMJ Log"/>
 							</a>
 						</div>
-					</li>											
-			
+					</li>												
 			
 		</ul>
 	
 </div>	
-			</div>
-			<div class="investment-content-list">
-				<div class="layout-comment">
+				</div>
+				<div class="investment-content-list">
+					<div class="layout-comment">
 
 	
 
@@ -682,60 +612,63 @@ Time Machine2020.02.28 : 重新部署coding页面，添加未来计划页面。
 <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
 
 <script type="text/javascript">
-	//Thanks O-R
-	//https://github.com/gitalk/gitalk/issues/102#issuecomment-382970552
-	//去除尾部匹配正则数组的字符串  
-	//Remove redundant characters
-	String.prototype.trimEnd = function(regStr) {
-		var result = this;
-		if(regStr == undefined || regStr == null || regStr == "") {
-			return result;
-		}
-		var array = regStr.split(',');
 
-		if(array.length > 0) {
-
-			var c = array.shift();
-			var str = this;
-			var i = str.length;
-			var rg = new RegExp(c);
-			var matchArr = str.match(rg);
-
-			if(matchArr != undefined && matchArr != null && matchArr.length > 0) {
-				var matchStr = matchArr[0].replace(/\\/g, "\\\\").replace(/\*/g, "\\*")
-					.replace(/\+/g, "\\+").replace(/\|/g, "\\|")
-					.replace(/\{/g, "\\{").replace(/\}/g, "\\}")
-					.replace(/\(/g, "\\(").replace(/\)/g, "\\)")
-					.replace(/\^/g, "\\^").replace(/\$/g, "\\$")
-					.replace(/\[/g, "\\[").replace(/\]/g, "\\]")
-					.replace(/\?/g, "\\?").replace(/\,/g, "\\,")
-					.replace(/\./g, "\\.").replace(/\&/g, "\\&");
-				matchStr = matchStr + '$';
-				result = str.replace(new RegExp(matchStr), "");
-			}
-
-			if(array.length > 0) {
-				return result.trimEnd(array.join())
-			} else {
+	(function gitalkComment(){
+		//Thanks O-R
+		//https://github.com/gitalk/gitalk/issues/102#issuecomment-382970552
+		//去除尾部匹配正则数组的字符串  
+		//Remove redundant characters
+		String.prototype.trimEnd = function(regStr) {
+			let result = this;
+			if(regStr == undefined || regStr == null || regStr == "") {
 				return result;
 			}
-		}
-	};
+			let array = regStr.split(',');
 
-	//Create gitalk
-	var gitalk = new Gitalk({
-		clientID: '3691c9977e4e7b82e71d',
-		clientSecret: 'cf18baf00d06cc3d3226e4a7dda8429a1a391225',
-		//id: window.location.pathname,
-		//id: decodeURI(window.location.pathname),
-		//id: (window.location.pathname).split("/").pop().substring(0, 49),
-		id: decodeURI( md5( location.href.trimEnd('#.*$,\\?.*$,index.html$') ) ),
-		repo: 'Blog_Comment',
-		owner: 'ymj1327',
-		admin: 'ymj1327',
-		distractionFreeMode: 'true',
-	})
-	gitalk.render('gitalk-container');
+			if(array.length > 0) {
+
+				let c = array.shift(), 
+					str = this,
+					i = str.length,
+					rg = new RegExp(c),
+					matchArr = str.match(rg);
+
+				if(matchArr != undefined && matchArr != null && matchArr.length > 0) {
+					let matchStr = matchArr[0].replace(/\\/g, "\\\\").replace(/\*/g, "\\*")
+						.replace(/\+/g, "\\+").replace(/\|/g, "\\|")
+						.replace(/\{/g, "\\{").replace(/\}/g, "\\}")
+						.replace(/\(/g, "\\(").replace(/\)/g, "\\)")
+						.replace(/\^/g, "\\^").replace(/\$/g, "\\$")
+						.replace(/\[/g, "\\[").replace(/\]/g, "\\]")
+						.replace(/\?/g, "\\?").replace(/\,/g, "\\,")
+						.replace(/\./g, "\\.").replace(/\&/g, "\\&");
+					matchStr = matchStr + '$';
+					result = str.replace(new RegExp(matchStr), "");
+				}
+
+				if(array.length > 0) {
+					return result.trimEnd(array.join())
+				} else {
+					return result;
+				}
+			}
+		};
+
+		//Create gitalk
+		let gitalk = new Gitalk({
+			clientID: '3691c9977e4e7b82e71d',
+			clientSecret: 'cf18baf00d06cc3d3226e4a7dda8429a1a391225',
+			//id: window.location.pathname,
+			//id: decodeURI(window.location.pathname),
+			//id: (window.location.pathname).split("/").pop().substring(0, 49),
+			id: decodeURI( md5( location.href.trimEnd('#.*$,\\?.*$,index.html$') ) ),
+			repo: 'Blog_Comment',
+			owner: 'ymj1327',
+			admin: 'ymj1327',
+			distractionFreeMode: 'true',
+		})
+		gitalk.render('gitalk-container');		
+	})();
 </script>
 
 		
@@ -743,9 +676,9 @@ Time Machine2020.02.28 : 重新部署coding页面，添加未来计划页面。
 	
 
 </div>
-			</div>
-			<div class="investment-content-list">
-				<div class="layout-share">
+				</div>
+				<div class="investment-content-list">
+					<div class="layout-share">
 	
 	
 
@@ -764,12 +697,260 @@ Time Machine2020.02.28 : 重新部署coding页面，添加未来计划页面。
 </div>
 
 
-			</div>
-		</div>	
-	</div>
+				</div>
+			</div>	
+		</div>
 	</div>
 </div>
 
+<!-- show math formula -->
+
+
+
+	 
+	<script src="/plugin/clipboard/clipboard.js"></script>
+	<script>
+		// Copy code !
+	    function preprocessing() {
+	        $("#article-content .highlight").each(function() {
+	            $(this).wrap('<div id="post-code"></div>');
+	        })
+
+	        $("#article-content #post-code").each(function() {
+	            $(this).prepend('<nav class="copy-nav"><span><i class="code-language"></i></span></nav>');
+	        })
+
+	        $("#article-content .copy-nav").each(function() {
+	            let languageClass = $(this).next().attr('class'),
+	                language = ((languageClass.length > 9) && (languageClass != null)) ? languageClass.substr(10) : "none"; //why 9? Need to check language?
+
+	            $(this).find('.code-language').text(language);
+	            $(this).append('<span class="copy-btn icon-paste"></span>');
+	        });
+	    }
+
+		function copy() {
+		    $('#article-content #post-code').each(function(i) {
+		        let codeCopyId = 'codeCopy-' + i;
+
+		        let codeNode = $(this).find('.code'),
+		            copyButton = $(this).find('.copy-btn');
+
+		        codeNode.attr('id', codeCopyId);
+		        copyButton.attr('data-clipboard-target-id', codeCopyId);
+		    })
+   
+			let clipboard = new ClipboardJS('.copy-btn', {
+					target: function(trigger) {
+						return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+					}
+		      	});
+
+			//pure js
+			function showTooltip(elem, msg) {		   
+				elem.setAttribute('aria-label', msg);
+				elem.setAttribute('class', 'copy-btn icon-clipboard1');
+				setTimeout(function() {
+					elem.setAttribute('class', 'copy-btn icon-paste');
+				}, 2000);
+			}
+
+			clipboard.on('success', function(e) {
+			    e.clearSelection();
+			    console.info('Action:', e.action);		   
+			    console.info('Trigger:', e.trigger);
+			    showTooltip(e.trigger, 'Copied!');   
+			});
+			
+			clipboard.on('error', function(e) {
+			    console.error('Action:', e.action);
+			    console.error('Trigger:', e.trigger);
+			});
+		}
+		
+		(function copyCode(){
+			if ($('.layout-post').length) {
+			    preprocessing();
+			    copy();
+			} 
+		})();
+	</script>
+
+
+
+
+
+<link rel="stylesheet" href="/plugin/fancybox/jquery.fancybox.css">
+<script src="/plugin/fancybox/jquery.fancybox.js"></script>
+
+<script type="text/javascript">
+	(function gallerySet(){
+		let titleID = $('.article-title a'),
+			imageID = $('.article-content img'),
+			videoID = $('.article-content video');
+		
+		let postTitle = titleID.text() ? titleID.text() : "No post title!";
+		
+		imageID.each(function() {
+			let imgPath = $(this).attr('src'),
+				imgTitle = $(this).attr('alt') ? $(this).attr('alt') : "No image description!";
+		
+			//给每个匹配的<img>元素打包, 即添加父元素<a>
+			$(this).wrap('<a data-fancybox="gallery" data-caption="《 ' + postTitle + ' 》' + imgTitle + '"href="' + imgPath + '"> </a>');
+		});
+		
+		videoID.each(function() {
+			let videoPath = $(this).attr('src');
+		
+			//给每个匹配的<img>元素打包, 即添加父元素<a>
+			$(this).wrap('<a data-fancybox href=" ' + videoPath + ' "> </a>');
+		});
+		
+		//TODO：支持html5 video
+
+		if($('#layout-post').length) {
+			$('[data-fancybox="gallery"]').fancybox({
+				loop: true,
+				buttons: [
+					"zoom",
+					"share",
+					"slideShow",
+					"fullScreen",
+					//"download",
+					"thumbs",
+					"close"
+				],
+				protect: true
+			});
+		}
+	})();
+</script>
+		</main>
+
+		<!--footer-->
+		<footer>
+	<div id="navigation-show">
+		<ul id="global-nav">
+	
+		<li class="menu-home">
+			<a href="/" class="menu-item-home" target="_blank">主页</a>
+		</li>
+		
+	
+		<li class="menu-archive">
+			<a href="/archives" class="menu-item-archive" target="_blank">归档</a>
+		</li>
+		
+	
+		<li class="menu-categories">
+			<a href="/categories" class="menu-item-categories" target="_blank">分类</a>
+		</li>
+		
+	
+		<li class="menu-tags">
+			<a href="/tags" class="menu-item-tags" target="_blank">标签</a>
+		</li>
+		
+	
+		<li class="menu-about">
+			<a href="/about" class="menu-item-about" target="_blank">关于</a>
+		</li>
+		
+	
+		<li class="menu-gallery">
+			<a href="/gallery" class="menu-item-gallery" target="_blank">相册</a>
+		</li>
+		
+	
+
+	
+		<li class="menu-search">
+			<a href="javascript:;" class="popup-trigger">搜索</a>
+		</li>
+	
+</ul>
+	</div>
+
+	<div class="copyright">
+		<p>
+			 
+				&copy;2017 - 2020, content by Sariay. All Rights Reserved.
+			
+			
+				<a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> Theme <a href="https://github.com/Sariay/hexo-theme-Annie" title="Annie" target="_blank" rel="noopener">Annie</a> by Sariay.
+			
+		</p>
+		<p>
+			
+
+	<!-- busuanzi -->
+	<!-- busuanzi -->
+
+		
+	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	
+
+		<span id="busuanzi_container_page_pv">
+	  		本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+		</span>
+
+	
+
+
+
+
+			<a href="javascript:zh_tran('s');" class="zh_click" id="zh_click_s">简体</a> 
+			<a href="javascript:zh_tran('t');" class="zh_click" id="zh_click_t">繁體</a>				
+		</p>
+	</div>		
+</footer>
+		
+	<!-- Local or hitokoto! -->
+
+	<script src="/plugin/motto/motto.js"></script>
+	
+	<script type="text/javascript">
+		(function motto(){
+			let mottoText = getMingYanContent().split('</br> - </br>'),
+			
+			mottoTextContent = mottoText[0]?mottoText[0]:'请刷新...',
+			
+			mottoTextFrom = mottoText[1]?mottoText[1]:'one/一个';
+			
+			mottoTextContent = mottoTextContent.trim().substring(0, 100);
+		
+			$("#motto-content").html( mottoTextContent);
+			$("#motto-author").html( mottoTextFrom  );
+		})();	
+	</script>	
+
+
+
+<!-- love effect -->
+
+	<script src="/plugin/love/love.js"></script>
+
+
+<!-- back to top -->
+
+	<div id="totop">
+	<span class="icon-circle-up"></span>
+</div>
+
+
+
+<!-- site analysis -->
+
+
+	<!-- site-analysis -->
+	
+	
+	
+	
+	
+ 
+
+<!-- leancloud -->
 
 
 	<!-- leancloud -->
@@ -794,223 +975,7 @@ Time Machine2020.02.28 : 重新部署coding页面，添加未来计划页面。
 
 	
 
-
-<!-- show math formula -->
-
-
-
-	 
-	<script src="/plugin/clipboard/clipboard.js"></script>
-	<script>
-		// Copy code !
-	    function codePreprocessing() {
-	        $("#article-content .highlight").each(function() {
-
-	            $(this).wrap('<div id="post-code"></div>');
-
-	        })
-
-	        $("#article-content #post-code").each(function() {
-
-	            $(this).prepend('<nav class="copy-nav"><span><i class="code-language"></i></span></nav>');
-
-	        })
-
-	        $("#article-content .copy-nav").each(function() {
-	            var temp = $(this).next().attr('class'),
-	                language = ((temp.length > 9) && (temp != null)) ? temp.substr(10) : "none"; //why 9? Need to check language?
-
-	            $(this).find('.code-language').text(language);
-
-	            $(this).append('<span class="copy-btn"><i class="fa fa-copy" aria-hidden="true"></i></span>');
-
-	        });
-	    }
-
-		function codeCopy() {
-		    $('#article-content #post-code').each(function(i) {
-		        var codeCopyId = 'codeCopy-' + i;
-
-		        var codeNode = $(this).find('.code'),
-		            copyButton = $(this).find('.copy-btn');
-
-		        codeNode.attr('id', codeCopyId);
-		        copyButton.attr('data-clipboard-target-id', codeCopyId);
-		    })
-
-		    
-			var clipboard = new ClipboardJS('.copy-btn', {
-					target: function(trigger) {
-						return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
-					}
-		      	});
-
-			//pure js
-			function showTooltip(elem, msg) {		   
-				elem.setAttribute('aria-label', msg);
-				elem.setAttribute('class', 'copy-btn copy-status');
-				setTimeout(function() {
-					elem.setAttribute('class', 'copy-btn');
-				}, 2000);
-			}
-
-			clipboard.on('success', function(e) {
-			    e.clearSelection();
-			    console.info('Action:', e.action);		   
-			    console.info('Trigger:', e.trigger);
-			    showTooltip(e.trigger, 'Copied!');
-			    
-			});
-			clipboard.on('error', function(e) {
-			    console.error('Action:', e.action);
-			    console.error('Trigger:', e.trigger);
-			});
-		
-
-		}
-
-		if ($('.layout-post').length) {
-		    codePreprocessing();
-		    codeCopy();
-		} 
-	</script>
-
-
-
-
-
-<link rel="stylesheet" href="/plugin/fancybox/jquery.fancybox.css">
-<script src="/plugin/fancybox/jquery.fancybox.js"></script>
-
-<script type="text/javascript">
-	var titleID = $('.article-title a'),
-		imageID = $('.article-content img'),
-		videoID = $('.article-content video');
-
-	var postTitle = titleID.text() ? titleID.text() : "No post title!";
-
-	imageID.each(function() {
-		var imgPath = $(this).attr('src'),
-			imgTitle = $(this).attr('alt') ? $(this).attr('alt') : "No image description!";
-
-		//给每个匹配的<img>元素打包, 即添加父元素<a>
-		$(this).wrap('<a data-fancybox="gallery" data-caption=" 《 ' + postTitle + ' 》 ' + imgTitle + ' "  href=" ' + imgPath + ' "> </a>');
-	});
-
-	videoID.each(function() {
-		var videoPath = $(this).attr('src');
-
-		//给每个匹配的<img>元素打包, 即添加父元素<a>
-		$(this).wrap('<a data-fancybox href=" ' + videoPath + ' "> </a>');
-	});
-	//TODO：支持html5 video
-
-	if($('#layout-post').length) {
-		$('[data-fancybox="gallery"]').fancybox({
-			loop: true,
-			buttons: [
-				"zoom",
-				"share",
-				"slideShow",
-				"fullScreen",
-				//"download",
-				"thumbs",
-				"close"
-			],
-			protect: false
-		});
-	}
-</script>
-		</main>
-
-		<!--footer-->
-		<footer>
-	<div class="social">
-		<ul>
-	
-		<li>
-			<a href="http://github.com/" target="_blank">
-				<i class="fa fa-github"></i>
-			</a>
-		</li>
-	
-		<li>
-			<a href="http://github.com/" target="_blank">
-				<i class="fa fa-weibo"></i>
-			</a>
-		</li>
-	
-		<li>
-			<a href="http://github.com/" target="_blank">
-				<i class="fa fa-pinterest"></i>
-			</a>
-		</li>
-	
-		<li>
-			<a href="http://github.com/" target="_blank">
-				<i class="fa fa-instagram"></i>
-			</a>
-		</li>
-	
-		<li>
-			<a href="http://github.com/" target="_blank">
-				<i class="fa fa-twitter"></i>
-			</a>
-		</li>
-	
-		<li>
-			<a href="/atom.xml" target="_blank">
-				<i class="fa fa-rss"></i>
-			</a>
-		</li>
-			
-</ul>
-
-	</div>
-		
-	<div class="copyright">
-		<p>
-			 
-				&copy;2017 - 2020, content by Yi Mengjun. All Rights Reserved.
-			
-			
-			
-
-	<!-- busuanzi -->
-	<!-- busuanzi -->
-
-		
-	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-	
-
-		<span id="busuanzi_container_page_pv">
-	  		本文总阅读量<span id="busuanzi_value_page_pv"></span>次
-		</span>
-
-	
-
-
-
-
-		</p>
-		<p>
-			<a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> Theme <a href="https://github.com/Sariay/hexo-theme-Annie" title="Annie" target="_blank" rel="noopener">Annie</a> by Sariay.
-			<a href="javascript:zh_tran('s');" class="zh_click" id="zh_click_s">简体</a> 
-			<a href="javascript:zh_tran('t');" class="zh_click" id="zh_click_t">繁體</a>				
-		</p>
-	</div>		
-</footer>
-		
-	<!-- set '1' to show motto in all pages! -->
-
-	<script src="/plugin/motto/motto.js"></script>
-	
-	<script type="text/javascript">
-		$(".motto").html( getMingYanContent() );
-	</script>	
-
-
-
+  
 
 	<!--
 	时间：2018-10-3
@@ -1019,7 +984,7 @@ Time Machine2020.02.28 : 重新部署coding页面，添加未来计划页面。
 		插件来源: https://github.com/SuperKieran/hexo-generator-search-zip
 		代码参考：https://github.com/SuperKieran/TKL/blob/master/layout/_partial/search.ejs(Include: js & css)	
 -->
-<div class="popup search-popup local-search-popup" >
+<div class="popup search-popup local-search-popup scrollbar" >
 	<div class="local-search-container">
 		<span class="popup-btn-close">
       		ESC
@@ -1042,7 +1007,7 @@ Time Machine2020.02.28 : 重新部署coding页面，添加未来计划页面。
 </div>
 
 <script src="/plugin/search/ziploader.js"></script>
-<script src="/plugin/search/search.js"></script>
+<script src="/js/search.js"></script>
 
 <script type="text/javascript">
 	var search_path = 'search.json',
@@ -1061,38 +1026,11 @@ Time Machine2020.02.28 : 重新部署coding页面，添加未来计划页面。
 </script>
 
 
-<!-- love effect -->
-
-	<script src="/plugin/love/love.js"></script>
-
-
-<!-- back to top -->
-
-	
-	<div id="totop">
-  		<a href="javascript:;"  name="TOTOP" class="fa fa-arrow-up" ></a>
-	</div>
-
-
-
-
-<!-- site analysis -->
-
-
-	<!-- site-analysis -->
-	
-	
-	
-	
-	
- 
-
-<script src="/plugin/vibrant/vibrant.js"></script>
 <script src="/plugin/chinese/chinese.js"></script>
-<script src="/plugin/imgLazyLoader/yall.min.js"></script>
-<script src="/plugin/imgResize/jquery.resizeimagetoparent.min.js"></script>
+<script src="/plugin/imagelazyloader/yall.min.js"></script>
+<script src="/plugin/imageloaded/imagesloaded.pkgd.min.js"></script>
 <script src="/plugin/nicescroll/jquery.nicescroll.js"></script>
-<script src="/js/resizediv.js"></script>
+<script src="/plugin/resizediv/resizediv.js"></script>
 <script src="/js/main.js"></script>
 	</body>	
 </html>
