@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title>Hexo Manual</title>
+      <link href="/2000/01/01/hexo-manual/"/>
+      <url>/2000/01/01/hexo-manual/</url>
+      
+        <content type="html"><![CDATA[<p><img src="https://m1.im5i.com/2022/10/03/UFWC5q.png" alt="UFWC5q.png"></p><h1 id="1-Create-a-new-blog"><a href="#1-Create-a-new-blog" class="headerlink" title="1 Create a new blog"></a>1 Create a new blog</h1><blockquote><p>hexo new “test”</p></blockquote><h1 id="2-Generate-static-web-pages"><a href="#2-Generate-static-web-pages" class="headerlink" title="2 Generate static web pages"></a>2 Generate static web pages</h1><blockquote><p>hexo g</p></blockquote><h1 id="3-Preview"><a href="#3-Preview" class="headerlink" title="3 Preview"></a>3 Preview</h1><blockquote><p>hexo s</p></blockquote><h1 id="4-Push-to-github"><a href="#4-Push-to-github" class="headerlink" title="4 Push to github"></a>4 Push to github</h1><blockquote><p>hexo d</p></blockquote><h1 id="5-Add-Video"><a href="#5-Add-Video" class="headerlink" title="5 Add Video"></a>5 Add Video</h1><h2 id="5-1"><a href="#5-1" class="headerlink" title="5.1"></a>5.1</h2><iframe src="//player.bilibili.com/player.html?aid=218527917&bvid=BV1r841147Sp&cid=847452324&page=1" scrolling="no" width="600px" height="400px" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe><h2 id="5-2"><a href="#5-2" class="headerlink" title="5.2"></a>5.2</h2><iframe src="//player.bilibili.com/player.html?aid=218527917&bvid=BV1r841147Sp&cid=847452324&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>]]></content>
+      
+      
+      <categories>
+          
+          <category> Website settings </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>iMYMJ Log</title>
+      <link href="/2000/01/01/hello-world/"/>
+      <url>/2000/01/01/hello-world/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>Welcome to my website! </p><p><img src="https://i.loli.net/2019/09/19/ClwBPRGpLWhSrm7.png" alt></p><p>这是易水寒的个人博客，改进ing</p><h1 id="Time-Machine"><a href="#Time-Machine" class="headerlink" title="Time Machine"></a>Time Machine</h1><p>2024.03.12 : 维护中ing</p><p>2022.10.14 : 进入生日模式</p><p>2022.10.02 : 清空重做</p><p>2020.02.28 : 重新部署coding页面，添加未来计划页面</p><p>2019.12.25 : 修复因ip地址改变而不能访问的bug</p><p>2019.11.01 : 退出生日模式，恢复日常页面，添加重庆日志</p><p>2019.10.13 : 建站日志等暂时移到后面</p><p>2019.10.12 : 更换生日配图</p><p>2019.10.09 : 添加图片，修改封面，关闭格言</p><p>2019.10.08 : 补齐若干旅行日记</p><p>2019.09.22 : 更新分类、标签、关于、相册功能</p><p>2019.09.19 : 制作新的logo，选用SM.MS图床，添加评论功能</p><p>2019.09.18 : 换用coding为依托，以hexo为基础修改，使用主题Annie</p><p>2019.08.09 : 临时修改过渡</p><p>2019.08.08 : 易水寒的个人网站建立第一天，以后可以用<a href="https://iMYMJ.com" target="_blank" rel="noopener">iMYMJ.com</a>来访问我，哈哈哈</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Website settings </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+  
+  
+</search>
